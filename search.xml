@@ -3,6 +3,13 @@
   
     
     <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>%2F2017%2F03%2F07%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in trobuleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    </entry>
+
+    
+    <entry>
       <title><![CDATA[test]]></title>
       <url>%2F2017%2F02%2F04%2Ftest%2F</url>
       <content type="text"><![CDATA[title 1sdsfsd title 2sfada 1code test quote]]></content>
@@ -10,9 +17,142 @@
 
     
     <entry>
-      <title><![CDATA[Hello World]]></title>
-      <url>%2F2017%2F02%2F04%2Fhello-world%2F</url>
-      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+      <title><![CDATA[Portage附加工具:dispatch-conf和etc-update]]></title>
+      <url>%2F2014%2F11%2F20%2Fgentoo-dispatch-etc%2F</url>
+      <content type="text"><![CDATA[dispatch-conf介绍dispatch-conf是一个帮助合并._cfg0000_&lt;名称&gt;文件的工具。._cfg0000_&lt;名称&gt;文件是由Portage在它要覆盖被CONFIG_PROTECT变量所保护的某个目录里的文件时建立的。 使用dispatch-conf能够在合并配置文件并升级更新的同时保持所有更新记录。dispatch-conf以RCS版本管理系统或是补丁的方式来保存配置文件间的差别。这意味着如果你在升级配置文件犯下错误时，你可以随时退回到你的配置文件的之前版本。 使用dispatch-conf，你可以保持配置文件原来的样子，或者使用新的配置文件，你还可以编辑当前文件或交互式地合并更新。除此之外，dispatch-conf还有一些很棒的特性： 可自动合并仅有注释变更的文件； 可自动合并仅有空白符数量的不同的文件； 使用确定你先编辑了/etc/dispatch-conf.conf并创建了archive-dir变量设定的目录。 运行dispatch-conf: 1dispatch-conf 当运行dispatch-conf的时候，程序会带你把每个改变了的配置文件挨个过一边。按 u 来用新配置文件更新（替换）现在的配置文件，然后继续处理下一个。按 z 来删除新配置文件，然后继续处理下一个。当处理完所有的配置文件之后，dispatch-conf就会退出。你也可以随时按q来退出。 更多信息，请查阅dispatch-conf手册页。它会告诉你交互式的合并新旧配置文件，编辑新配置文件，检查两个文件间的差异等等。 阅读dispatch-conf手册页: 1man dispatch-conf etc-update介绍你也可以使用etc-update来合并配置文件。它不像dispatch-conf那样简单易用，功能也少，但是它也能提供交互式合并功能并且能自动合并一些简单的改变。 不过，和dispatch-conf不同的是，etc-update不保留你的配置文件的旧版本。一旦你更新了文件，旧版本就永远丢失了。所以要非常小心，因为使用etc-update与使用dispatch-conf相比明显的不安全。 使用 运行etc-update 1etc-update 在整合简单直观的更动后，系统会提示你一个需要更新的受保护的文件列表。在最底下会提示你可选的操作选项： etc-update选项 Please select a file to edit by entering the corresponding number.(-1 to exit) (-3 to auto merge all remaining files)(-5 to auto-merge AND not use ‘mv -i’): 如果你输入-1，etc-update将直接退出且不执行任何变更。如果你输入-3或-5，所有列出的配置文件将被更新的版本覆盖。因此先选出无需自动升级的配置文件非常重要，而具体步骤也很简单，只需要输入在该配置文件左边显示的数字就可以了。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo系统下设置Grub启动菜单--使用官方livedvd主题]]></title>
+      <url>%2F2014%2F11%2F20%2Fgentoo-grub-themes%2F</url>
+      <content type="text"><![CDATA[设置Gentoo Grub启动主题 拷贝官方LiveDVD grub主题： 下载官方DVD，找到 /boot/grub/themes/GenGrub目录，并拷贝出来。 安装GenGrub主题： 将GenGrub主题拷贝到系统的 /boot/grub/themes目录，并编辑grub配置文件： 1nano -w /etc/default/grub 将主题路径设置成/boot/grub/themes/GenGrub/theme.txt 更新grub配置文件（grub2）： 1grub2-mkconfig -o /boot/grub/grub.cfg 系统自动检测存在的操作系统和主题。 OK，重启系统]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo安装软件自动更新USE标记 --autounmask-write]]></title>
+      <url>%2F2014%2F11%2F20%2Fgentoo-autounmask%2F</url>
+      <content type="text"><![CDATA[Gentoo的USE标记的冲突，现在portage提供了 emerge --autounmask-write 的方式来自动更新portage配置文件，USE环境变量是针对全局的USE设置，而这个文件是针对具体的软件包来设置。 emerge参数：－－autounmask-write 用法： 查看需要的依赖标记 1emerge -pv fcitx 自动标记 1emerge --autounmask-write fcitx 更新配置文件 12dispatch-confu 安装软件 1emerge fcitx]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Git使用子模块引用外部项目]]></title>
+      <url>%2F2014%2F11%2F14%2Fgit-submodule%2F</url>
+      <content type="text"><![CDATA[Git子模块(submodule)简介经常有这样的事情，当你在一个项目上工作时，你需要在其中使用另外一个项目。也许它是一个第三方开发的库或者是你独立开发和并在多个父项目中使用的。这个场景下一个常见的问题产生了：你想将两个项目单独处理但是又需要在其中一个中使用另外一个。子模块允许你将一个 Git 仓库当作另外一个Git仓库的子目录。这允许你克隆另外一个仓库到你的项目中并且保持你的提交相对独立。 Git子模块用法添加一个子模块首先你要把外部的仓库克隆到你的子目录中。假设你想把 pacman项目加入到你的blog项目中，你通过git submodule add将外部项目加为子模块：12cd bloggit submodule add https://gitcafe.com/aceking/pacman.git themes/pacman 现在你就在项目里的themes/pacman子目录下有了一个 pacan项目。你可以进入那个子目录，进行变更，加入你自己的远程可写仓库来推送你的变更，从原始仓库拉取和归并等等。 .gitmodules文件: 这是一个配置文件，保存了项目 URL 和你拉取到的本地子目录。 克隆一个带子模块的项目克隆你刚才创建子模块的项目。你将得到了包含子项目的目录，但里面没有文件：pacman目录存在了，但是是空的。你必须运行两个命令：git submodule init来初始化你的本地配置文件，git submodule update来从那个项目拉取所有数据并检出你上层项目里所列的合适的提交。 123cd bloggit submodule init themes/pacamangit submodule update 现在你的pacman子目录就处于你先前提交的确切状态了。 参考：Git-子模块]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hexo搭建免费静态博客]]></title>
+      <url>%2F2014%2F11%2F11%2Fhexo-handbook%2F</url>
+      <content type="text"><![CDATA[Hexo简介之前在Github上托管的博客就是使用jekyll搭建的，官方的Github Pages同样推荐使用它。我之前体验了一下jekyll，没有达到我想要的效果。于是寻找替代方案，搜索同类博客程序，我认识了hexo，hexo出自台湾大学生tommy351之手,是由Node.js驱动的一款快速、简单且功能强大的博客框架。Node.js是一个可以快速构建网络服务及应用的平台 。该平台的构建是基于Chrome’s JavaScript runtime，也就是说，实际上它是对Google V8引擎（应用于Google Chrome浏览器)进行了封装。V8引擎执行Javascript的速度非常快，性能非常好。Node对一些特殊用例进行了优化，提供了替代的API，使得V8在非浏览器环境下运行得更好。它和jekyll相比，更快，更轻量。 Hexo安装 安装git 大多数Linux发行版已经默认安装了git,如果没有直接使用包管理工具安装 Windows: Git-Downloads 安装node.js Gentoo package: net-libs/nodejs Arch: nodejs Windows: node.js 安装hexo 1npm install hexo -g 配置Hexo 初始化博客根目录 1234hexo init blog``` - 安装依赖包 npm install1安装之后，项目目录下出现如下文件结构： .├── _config.yml 全局配置文件├── package.json├── scaffolds├── scripts├── source 文章存放位置| ├── _drafts 草稿| └── _posts 文章└── themes123456### 插件和主题- plugins: 插件添加插件的基本操作是： npm install –savenpm update12然后修改blog根目录下的_config.yml，添加： plugins: plugin-name1234- themes: 安装主题： git clone themes/12345678&gt; 无论是插件还是主题在安装后都需要在根目录下_config.yml中修改plugins和theme的值以启用他们。本博客使用[pacman](https://github.com/A-limon/pacman)主题，扁平化设计，响应速快，推荐使用。修改配置参考: [http://yangjian.me/workspace/introducing-pacman-theme/](http://yangjian.me/workspace/introducing-pacman-theme/)### 写文章使用Markdown语法编辑文章。使用hexo new命令生成文章或者直接在_posts目录下直接创建文件，打开后先编辑文章头部信息，如下所示是本文的头部信息，以---结尾。 title: 使用Hexo搭建个人静态博客 #文章页面上的显示名称，可以任意修改，不会出现在URL中layout: postdate: 2014-11-10 10:07:43 #文章生成时间，一般不改，当然也可以任意修改updated: 2014-11-12 13:24comments: truecategories: Blogtags: hexo blog 1234#### 文章摘要在需要显示摘要的地方添加如下代码即可： 以上是摘要以下是余下全文12345678#### 文章中插入图片使用markdown写文章，插入图片的格式为`![图片名称](链接地址)`，这里要说的是链接地址怎么写。对于hexo，使用本地路径：在/source目录下新建一个img文件夹，将图片放入该文件夹下，插入图片时链接即为/img/图片名称。### 发布博客这里的发布也是十分简单的，首先在github上创建名为yourname.github.io的repo，接着修改_config.yml中的deploy字段，最后执行hexo d(前提是你已经在github上添加了你本机的ssh key)，OK，现在通过yourname.github.io已经可以访问你的博客了。 deploy:type: githubrepo: git@github.com:yourname/yourname.github.io.gitbranch: master1234&gt; 如果是博客主页以github项目的方式创建，分支选择gh-pages。或 多个平台同时发布 deploy:type: gitrepo: gitcafe: https://gitcafe.com/yourname/yourname.git,gh-pages github: https://github.com/yourname/yourname.github.io.git,master1234567## Hexo使用### init 初始化博客``` hexo init [folder] 如果目录不存在，将设置初始化当前目录 new 创建新文章1hexo new [layout] &lt;title&gt; 默认layout是post generate 生成静态网页文件1hexo generate publish 发布草稿1hexo publish [layout] &lt;filename&gt; server 启动本地服务1hexo server 搭建本地server，进行文章预览调试。浏览器输入http://localhost:4000 就可以看到效果。 deploy 发布博客1hexo deploy clean 清除缓存1hexo clean 清除缓存文件：Cleans the cache file (db.json) and generated files (public). list 显示博客结构1hexo list route 列出生成的所有博客文件路径 常用命令Hexo现在支持更加简单的命令格式了，比如： hexo n == hexo newhexo g == hexo generatehexo p == hexo publishhexo s == hexo serverhexo d == hexo deploy发布博客命令：hexo g -d或hexo d -g 参考： hexo.io hexo on github 搭建一个免费的，无限流量的Blog—-github Pages和Jekyll入门 pacman主题介绍 hexo你的博客]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Xorg问题:Failed to load module "……"]]></title>
+      <url>%2F2014%2F10%2F24%2Fxorg-failed-module%2F</url>
+      <content type="text"><![CDATA[错误描述：安装完xorg-server后，startx启动桌面环境，出现缺少模块错误。 Xorg:Failed to load module “……” 查看log： 1cat /var/log/Xorg.0.log | grep EE [75.403] (EE) Failed to load module “modesetting” (module does not exist, 0)[75.403] (EE) Failed to load module “fbdev” (module does not exist, 0)[75.403] (EE) Failed to load module “vesa” (module does not exist, 0) 解决方法：查看xorg-drivers中INPUT_DEVICES和VIDEO_CARDS变量,在make.conf中添加缺失的标记。 1emerge -pv xorg-drivers These are the packages that would be merged, in order:Calculating dependencies … done![ebuild R ] x11-base/xorg-drivers-1.15 INPUT_DEVICES=”evdev keyboard mouse -acecad -aiptek -elographics -fpit -hyperpen -joystick -mutouch -penmount -synaptics -tslib -vmmouse -void -wacom” VIDEO_CARDS=”intel -apm -ast -chips -cirrus -dummy -epson -fbdev -fglrx (-freedreno) -geode -glint -i128 -i740 -mach64 -mga -modesetting -neomagic -nouveau -nv -nvidia (-omap) (-omapfb) -qxl -r128 -radeon -radeonsi -rendition -s3virge -savage -siliconmotion -sisusb (-sunbw2) (-suncg14) (-suncg3) (-suncg6) (-sunffb) (-sunleo) (-suntcx) -tdfx -tga -trident -tseng -v4l -vesa -via -virtualbox -vmware (-voodoo)” 0 kB 在VIDEO_CARDS中添加modesetting,fbdev,vesa即可。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo解决"!!! existing preserved libs"问题]]></title>
+      <url>%2F2014%2F10%2F20%2Fgentoo-preserved-libs%2F</url>
+      <content type="text"><![CDATA[问题描述1234567891011!!! existing preserved libs:&gt;&gt;&gt; package: media-libs/libmng-2.0.2-r1 * - /usr/lib/libmng.so.1 * - /usr/lib/libmng.so.1.0.0 * used by /opt/kingsoft/wps-office/office6/qt/plugins/imageformats/libqmng.so (app-office/wps-office-9.1.0.4751_alpha15)&gt;&gt;&gt; package: media-libs/lcms-1.19-r2 * - /usr/lib/liblcms.so.1 * - /usr/lib/liblcms.so.1.0.19 * used by /usr/lib/libmng.so.1 (preserved) * used by /usr/lib/libmng.so.1.0.0 (preserved)Use emerge @preserved-rebuild to rebuild packages using these libraries 解决方法折腾过程： emerge @preserved-rebuild 不起作用。 重装wps-office，再@preserved-rebuild，不起作用。 重装media-libs/libmng、package: media-libs/lcms不起作用。 1234emerge media-libs/libmngemerge media-libs/lcmsemerge --depcleanrevdep-rebuild 4.卸载wps-office（一直无法解决，想卸载暂时放弃使用），preserved libs提示消失： 123emerge -C wps-officeemerge --depcleanemerge @preserved-rebuild 5.第二天安装wps-office，成功无preserved libs提示。 总结 先卸载引起preserved libs的软件包（记得–depclean） @preserved-rebuild 重新安装软件]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Arch Linux安装详解]]></title>
+      <url>%2F2014%2F10%2F10%2Farch-handbook%2F</url>
+      <content type="text"><![CDATA[准备准备磁盘分区 新建并格式化分区 至少准备一个足够大的/分区，如果磁盘容量足够，可以额外创建/home、/boot等。 创建挂载目录 123mkdir /mntmkdir /mnt/bootmkdir /mnt/home 挂载根分区和swap Mount the root partition on /mnt. After that, create directories for and mount any other partitions (/mnt/boot, /mnt/home, …) and activate your swap partition if you want them to be detected later by genfstab. 123mount /dev/sdax /mntmount /dev/sdax/bootmount /dev/sdax/home 准备连接 有线： 默认使用Dhcp，一般自动检测，无需设置 无线： 1wifi-menu 编辑镜像列表 1wget -O /etc/pacman.d/mirrorlist https://www.archlinux.org/mirrorlist/all/ 取消注释中国的镜像 安装系统1pacstrap /mnt base 配置系统fstab文件 Generate an fstab file (use -U or -L to define by UUID or labels): 1genfstab -p /mnt &gt;&gt; /mnt/etc/fstab chroot1arch-chroot /mnt Hostname:1echo computer_name &gt; /etc/hostname Time zone:1ln -sf /usr/share/zoneinfo/zone/subzone /etc/localtime Locale:12nano -w /etc/locale.genlocale-gen Password:1passwd Initial RAM:1mkinitcpio -p linux Bootloader: 安装grub2: 12pacman -S grubgrub-install --target=i386-pc --recheck /dev/sda Dual-booting: 1pacman -S os-prober 生成grub配置文件 1grub-mkconfig -o /boot/grub/grub.cfg 重启12exitreboot]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[gcc-config问题:Active gcc profile is invalid]]></title>
+      <url>%2F2014%2F09%2F02%2Fgcc-config-error%2F</url>
+      <content type="text"><![CDATA[错误描述Gentoo软件安装错误,提示： gcc-config: Active gcc profile is invalid 解决方法： 列出可用的profile 1gcc-config -l gcc-config: Active gcc profile is invalid! [1] i686-pc-linux-gnu-4.6.3 显示当前使用的profile 1gcc-config -c gcc-config: Active gcc profile is invalid![1] i686-pc-linux-gnu-4.6.3 设置profile 1gcc-config i686-pc-linux-gnu-4.6.3 Switching native-compiler to i686-pc-linux-gnu-4.6.3 …Regenerating /etc/ld.so.cache… [ ok ]]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Portage更新排除软件包]]></title>
+      <url>%2F2014%2F08%2F18%2Fportage-excludes%2F</url>
+      <content type="text"><![CDATA[有选择地更新特定的类别/软件包并且忽略其他类别/软件包 通过让emerge --sync在执行rsync的时候排除个别类别/软件包 你需要在/etc/make.conf中赋予--exclude-from变量一个文件名，该文件应包含你想要排除的软件包。 在/etc/portage/make.conf中指定包含排除软件包条目的文件: 1PORTAGE_RSYNC_EXTRA_OPTS=&quot;--exclude-from=/etc/portage/rsync_excludes&quot; 在/etc/portage/rsync_excludes中设定排除所有游戏 1games-*/* 编辑/var/lib/portage/world文件这个文件包含了用户自定义的软件包列表。添加你想在升级world集合时一起升级的软件包，删除那些你想忽略软件包。 安装软件时使用--oneshot(-1)参数 正常合并指定的包，但是并不将其添加到world文件中。这样，除非被其他包依赖而被动升级，否则不会升级。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Emerge常用命令]]></title>
+      <url>%2F2014%2F08%2F14%2Fgentoo-emerge%2F</url>
+      <content type="text"><![CDATA[查看依赖关系 –pretend（-p）-pv #查看包含doc USE flag，来查看是否下载了文档。 搜索软件包信息 查询软件包名称–search（-s）查询软件包描述：–searchdesc (-S)查看软件更新记录–changelog (-l) #与 –pretend 并用，显示所有将更新套件的变更纪录。 下载源码 只下载源码(以及它所依赖的)–fetchonly(-f)-fp #查看从哪下的源码 更新软件 –update (-u) #更新套件到最近的版本–upgradeonly (-U) #更新套件，但不更新会导致版本号码降低的套件 卸载软件 –unmerge（-C）移除不影响系统功能的软件–clean (-c)卸载可以移除的依赖（清理系统）–depclean(深度清理) 常用参数：交互询问–ask (-a)打印信息–verbose (-v) # 以详述模式执行,可印出 GNU 错误讯息，并显示假执行所用的 USE flags。–version (-V) #显示 emerge 版本。不能与其它选项共享，名称与格式为规范。使用本地编好的预编译包，没有就下源码–usepkg(k) #使用预编的套件 (来自 $PKGDIR),若有可免去编译只使用本地编好的预编译包，否则不安装(绝对不编译，所有依赖的包都有binary才装)–usepkgonly(-K)]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo Linux安装详解]]></title>
+      <url>%2F2014%2F05%2F15%2Fgentoo-handbook%2F</url>
+      <content type="text"><![CDATA[前期准备远程登录： 开启ssh服务： 1/etc/init.d/sshd start 设置密码： 1passwd 以便使用putty、ssh client远程登录上传stage等（有时在线下载很慢，而局域网上传很快） 准备磁盘： 分区： 1fdisk /dev/sda /dev/sda1 : /boot 100M(32-100M) 设启动笔记-a/dev/sda2 : / 20G/dev/sda3 : /home 20G /dev/sda5 : /swap 1G (内存&lt; 512 MB,分区分配2倍内存大小的空间;&gt; 1024 MB，可以分配较少的空间甚至不需要swap 分区。)-t 82 创建文件系统： 1234mkfs.ext4 /dev/sda1mkfs.ext4 /dev/sda2mkfs.ext4 /dev/sda3mkswap /dev/sda5 挂载分区： 123456mount /dev/sda2 /mnt/gentoomkdir /mnt/gentoo/bootmount /dev/sda1 /mnt/gentoo/bootmkdir /mnt/gentoo/homemount /dev/sda3 /mnt/gentoo/homeswapon /dev/sda5 安装系统安装stage及portage： 正确设置日期／时间： 1date 如果显示的日期／时间不正确，可以使用date MMDDhhmmYYYY命令 下载Stage3 Tarbll： 12cd /mnt/gentoolinks http://www.gentoo.org/main/en/mirrors.xml 选择国内速度较快的镜像，进入releases/x86/autobuilds/目录里。你将会看到所有适合你的计算机体系结构的stage文件（它们也可能放在各个独立的子体系名称的子目录里）。选择一个，然后按D来下载。下载完以后，再按Q退出浏览器。 或使用SSH Secure Shell登录上传stage3文件 解开Stage3 Tarball： 1tar xvjpf stage3-*.tar.bz2 下载Portage： 打开links（或者lynx）然后到我们的Gentoo镜像列表。选择一个离你最近的镜像，打开snapshots/目录。然后选择最新的Portage快照（portage-latest.tar.bz2）并按D来下载它。 1links http://www.gentoo.org/main/en/mirrors.xml 或使用SSH Secure Shell登录上传portage文件 解压Portage： 1tar -xvjf /mnt/gentoo/portage-latest.tar.bz2 -C /mnt/gentoo/usr （install a Portage snapshot） 编译前准备： 配置编译选项： 1nano -w /mnt/gentoo/etc/portage/make.conf CFLAGS=”-march=native -O2 -pipe”CXXFLAGS=”${CFLAGS}” # 两个变量使用相同的设置MAKEOPTS=”-j3” #MAKEOPTS定义在安装软件的时候同时可以产生并行编译的数目，CPU数目加一是个不错的选择 查看cpu信息： 1cat proc/cpuinfo 选择镜像站点： 12mirrorselect -i -o &gt;&gt; /mnt/gentoo/etc/portage/make.confmirrorselect -i -r -o &gt;&gt; /mnt/gentoo/etc/portage/make.conf 拷贝DNS信息： 1cp -L /etc/resolv.conf /mnt/gentoo/etc/ Chroot进入新系统环境：Chroot： 挂载 /proc, /dev, /sys文件系统： 123mount -t proc none /mnt/gentoo/procmount --rbind /dev /mnt/gentoo/devmount --rbind /sys /mnt/gentoo/sys 进入新的系统环境： 123chroot /mnt/gentoo /bin/bashsource /etc/profileexport PS1=&quot;(chroot) $PS1&quot; 新环境配置： 更新portage树： 123emerge --sync （Updating the Portage tree）或emerge-webrsync（fetch the latest portage snapshot） 选择Profile： 12eselect profile listeselect profile set × 设置时区： 123ls /usr/share/zoneinfoecho &quot;Europe/Brussels&quot; &gt; /etc/timezoneemerge --config sys-libs/timezone-data 设置locale： 12nano -w /etc/locale.genlocale-gen 更新环境变量： 12env-update &amp;&amp; source /etc/profile` 编译内核： 安装内核源码： 选择内核：如gentoo-sources 12emerge gentoo-sourcesls -l /usr/src/linux 手动编译内核：12cd /usr/src/linuxmake menuconfig 必须启用的选项： 显卡：Xorg/Configuration声卡：ALSA网卡：根据具体网卡芯片型号，查看wiki。无线网卡芯片驱动查询：Linux Wireless 其他选项根据需要添加，不了解保持默认即可. 编译内核与模块： 1make &amp;&amp; make modules_install 拷贝内核到启动分区： 123cp arch/x86_64/boot/bzImage /boot/kernel-3.10.10-gentoo或make install #使用make install This will copy the kernel image into /boot together with the System.map file and the kernel configuration file. 使用genkernel编译内核：1emerge genkernel 可选：复制安装光盘上的内核配置文件： 1zcat /proc/config.gz &gt; /usr/share/genkernel/arch/x86_64/kernel-config 编译： 1genkernel --menuconfig all 一旦genkernel运行完成，一个包括全部模块和initrd的内核将被建立。在后面配置引导程序时我们将会用到这个内核和initrd。请记下内核和initrd的名字，因为您将在配置引导程序的时候用到他们(Grub Legacy使用)。initrd将会在启动真正的系统前自动识别硬件（如同安装光盘一样）。 1ls /boot/kernel* /boot/initramfs* 配置系统系统信息： 文件系统信息： 创建/etc/fstab 1nano -w /etc/fstab 网络信息： Host name, Domainname, etc 1nano -w /etc/conf.d/hostname Configuring Network 1nano -w /etc/conf.d/net 系统信息： Gentoo uses /etc/rc.conf to configure the services, startup, and shutdown of your system. 1nano -w /etc/rc.conf Root Password 1passwd Gentoo uses /etc/conf.d/hwclock to set clock options. 1nano -w /etc/conf.d/hwclock 安装系统工具软件： 可选：PCMCIA使用lspci查看硬件信息： 1emerge pcmciautils System Logger： 12emerge syslog-ngrc-update add syslog-ng default 可选：File Indexing： 1emerge mlocate 可选：Remote Access： 1rc-update add sshd default 可选：DHCP Client： 1emerge dhcpcd 配置启动项： Using GRUB2： 12emerge sys-boot/grubgrub2-install /dev/sda Generating GRUB2 configuration： 1grub2-mkconfig -o /boot/grub/grub.cfg 可选：Using GRUB Legacy： 1emerge sys-boot/grub:0 编辑配置文件： 1nano -w /boot/grub/grub.conf Example grub.conf： 1234567891011121314151617181920212223242526# 默认选择哪个列表来引导。0表示第一个， 1表示第二个，以此类推。default 0# 引导默认列表前等待多少秒timeout 30# 使用漂亮、“臃肿”的spalsh图像来增加一点趣味:)# 如果您没有安装显卡，请将这行注释掉splashimage=(hd0,0)/boot/grub/splash.xpm.gztitle Gentoo Linux 3.10.10# 内核镜像（或者操作系统）所在分区root (hd0,0)kernel /boot/kernel-3.10.10-gentoo root=/dev/sda2title Gentoo Linux 3.10.10 (rescue)# 内核镜像（或者操作系统）所在分区root (hd0,0)kernel /boot/kernel-3.10.10-gentoo root=/dev/sda2 init=/bin/bb# 接下来的四行只有在您与Windows系统进行双启动的情况下才需要。# 本例中，windows系统位于/dev/sda6。title Windows XProotnoverify (hd0,5)makeactivechainloader +1#win7下注释掉makeactive Setting up GRUB Legacy using grub-install:Creating /etc/mtab: 1grep -v rootfs /proc/mounts &gt; /etc/mtab Install GRUB Legacy: 1grub-install --no-floppy /dev/sda 重启系统:12345exitcdumount -l /mnt/gentoo/dev&#123;/shm,/pts,&#125;umount -l /mnt/gentoo&#123;/boot,/proc,&#125;reboot 安装X桌面环境：安装Xorg： 检测显卡信息： 12dmesg | grep videolspci | grep -i VGA 配置INPUT_DEVICE、VIDEO_CARDS变量： 在安装Xorg之前，你需要在/etc/portage/make.conf文件中设置两个重要的变量。 12345678910(For mouse, keyboard, and Synaptics touchpad support)INPUT_DEVICE=&quot;evdev synaptics&quot; （对nVidia显卡）VIDEO_CARDS=&quot;nvidia&quot;（或，对ATI Radeon显卡）VIDEO_CARDS=&quot;radeon&quot;（VMware虚拟机）VIDEO_CARDS=&quot;vmware&quot;（VirtualBox虚拟机）VIDEO_CARDS=&quot;virtualbox&quot; 安装xorg-server“ 1emerge -pv xorg-drivers First of all, make sure udev is in your USE flags: 1echo &quot;x11-base/xorg-server udev&quot; &gt;&gt; /etc/portage/package.use 注：现在比较新的版本的Xorg（大概是 1.5 以后的吧） 使用 evdev 替换了 keyboard 和 mouse ，确保 udev 标记在安装 xorg-server 时被启用。 Next, install Xorg: 1emerge -av xorg-server 更新环境变量： 12env-update source /etc/profile 使用startx： 安装 twm 和 xterm 之后 执行 startx 测试 X 是否正常。测试正常之后可以删除 twm 和 xterm。 12emerge -v twm xtermstartx 安装桌面环境： lxde： awesome：]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo挂载Windowntfs的NTFS分区]]></title>
+      <url>%2F2014%2F05%2F06%2Fkernel-ntfs%2F</url>
+      <content type="text"><![CDATA[内核需要开启的选项12File systems ---&gt; &lt;*&gt; FUSE (Filesystem in Userspace) support 使用NTFS-3GNTFS-3G是一个由Tuxera公司开发并维护的开源项目，目的是为Linux提供NTFS分区的的驱动程序。它可以安全且快速地读写 Windows 系统的 NTFS 分区，而不用担心数据丢失。 安装软件包： 1emerge -pv sys-fs/ntfs3g 临时挂载NTFS分区 可以使用下面的命令以读写方式临时装载一个NTFS分区到装载点 1mount -t ntfs-3g &lt;NTFS Partition&gt; &lt;Mount Point&gt; 系统启动时挂载NTFS分区 编辑/etc/fstab 1vi /etc/fstab 在文件最后增加如下格式的行 ntfs-3g defaults 0 0 保存文件后重启系统或简单的执行下面的命令，即可装载NTFS分区到指定的装载点 1mount -a]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo解决Windows双系统时间不同步问题]]></title>
+      <url>%2F2014%2F04%2F24%2Fdual-system-time%2F</url>
+      <content type="text"><![CDATA[升级后的gentoo不再使用/etc/conf.d/clock，而是使用/etc/conf.d/hwclock来设置和时间相关了。 在/etc/conf.d/hwclock文件中设置系统时间为本地时间而不是UTC时间: 1clock=&quot;local&quot; #default: UTC 然后用date命令设置正确的系统时间，格式如下： 1date [MMDDhhmm[YY][.ss］ 其他的不用解释了，其中的YY表示年份的前２位数。 然后再把系统时间同步到硬件时间就可以了： 1hwclock --systohc 使用hwclock命令也可以把硬件时间同步到系统时间： 1hwclock --hctosys 显示硬件时间则是： 1hwclock --show]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo更新系统标准步骤]]></title>
+      <url>%2F2014%2F04%2F16%2Fgentoo-update%2F</url>
+      <content type="text"><![CDATA[Gentoo Linux改为采用滚动更新。Gentoo Linux的更新频密度可达到每周皆提供更新版。 升级系统的标准步骤：123emerge --sync //升级整个portage目录emerge portage //如果不是最新的portage，需要按提示执行此操作emerge -avuDN world //按照 /var/lib/portage/world 文件下的包，重新构建整个系统 参数说明：–ask (-a) 控制Portage显示它要更新的软件包列表，并让您决定是否继续更新–verbose (-v) 在屏幕上输出完整的文件列表–update (-u) 更新包的最佳版本–deep (-D) 更新系统中的每个软件包–newuse (-N) USE标记变更后，要使Portage检查USE标记的变动是否导致需要安装新的软件包或者将现有的包重新编译 12emerge -av --depclean //清除不需要（孤立）的软件包revdep-rebuild revdep-rebuild gentoolkit包里面的一个软件，用来检查系统的依赖关系是否都满足，自动安装没有满足关系. 1dispatch-conf //更新系统的配置文件 1emerge -e world //本地重新编译整个系统，USE标记变化不大时不需执行 1env-update &amp;&amp; source /etc/profile //如有必要，更新环境变量]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo本地化设置--时区、时钟、字体、中文环境]]></title>
+      <url>%2F2013%2F12%2F04%2Fgentoo-localization%2F</url>
+      <content type="text"><![CDATA[时区你需要选择时区让系统知道你的地理位置，以保持正确的时间。在/usr/share/zoneinfo中查找你的时区。然后在/etc/conf.d/clock中设置时区。请忽略/usr/share/zoneinfo/Etc/GMT*时区，因为它们的名字并不表示所指的地区。比如，GMT-8实际上是GMT+8。设置时区信息： 123ls /usr/share/zoneinfoecho &quot;Asia/Shanghai&quot; &gt; /etc/timezoneemerge --config sys-libs/timezone-data 注意: 你可以做一个用户级的设置，在shell的rc文件（如bash的.bash_profile）中将TZ变量的值设为/usr/share/zoneinfo下的任何东西。本案例中TZ=”Asia/Shanghai”。 硬件时钟Gentoo Linux安装过程中，大多数情况下硬件时钟都是被设成UTC（或GMT，格林威治标准时间），而时区则定为实际的本地时间。如果出于某种原因，你需要将硬件时钟设为非UTC，那么你就要编辑/etc/conf.d/hwclock，将CLOCK的值由UTC改为local。 123CLOCK=&quot;UTC&quot;或CLOCK=&quot;local&quot; 安装中文字体推荐开源文泉驿自由字体 12emerge wqy-zenhei （文泉驿正黑）emerge wqy-microhei （文泉驿微米黑） 生成指定的Locale可能你在系统中只要用到一个或者两个locale。你可以在/etc/locale.gen中指定所需的的locale。中文有很多种编码，最流行的就是UTF8和GBK。我们推荐客户使用UTF8编码，因为这是国际标准，能兼容任何语言的编码。 添加locale到/etc/locale.gen 1nano -w /etc/locale.gen en_US ISO-8859-1en_US.UTF-8 UTF-8zh_CB.UTF-8 UTF-8 下一步是执行locale-gen。它会生成/etc/locale.gen文件中指定的所有locale。 1locale-gen 你可以通过执行locale -a来检验所选的locale是否可用。 1locale -a 设置一个Locale显示中文 在/etc/env.d/02locale中设置全局默认的系统locale LANG=”zh_CN.UTF-8”LC_COLLATE=”C” 在~/.bashrc中设置用户级的系统locale export LANG=”zh_CN.UTF-8”export LC_COLLATE=”C” 更新系统全局默认的locale： 设置好正确的locale后，一定要更新环境变量使系统知道所做的更改： 1env-update &amp;&amp; source /etc/profile 更新特定用户的locale： 1source ~/.bashrc 更新环境后，你需要按下Ctrl-Alt-Backspace杀死X服务器，登出，然后以用户身份登入。现在，检验一下所做的更改是否已经生效了： 1locale 注：另一种系统配置方式是保留默认的C locale，同时要能够表现UTF-8字符。这种选择可以通过使用下述设置来实现：LC_CTYPE=zh_CN.UTF-8]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo本地化中文设置--Locale系统介绍]]></title>
+      <url>%2F2013%2F12%2F04%2Fgentoo-locale%2F</url>
+      <content type="text"><![CDATA[locale是什么？一份Locale是一组信息的集合，大多数程序利用它来确定特定的国家和语言设置。这些locale以及它们包含的数据是系统库的一部分，可以在大多数系统中的/usr/share/locale目录下找到。locale的名称通常命名为ab_CD的形式，其中ab是两个（或三个）字母的语言代号（在ISO-639中指定），CD是两个字母的国家代号（在ISO-3166中指定）。一些变量常常附加在locale名称的后面，例如en_GB.UTF-8或de_DE@euro。 locale环境变量Locale的设置保存在环境变量中。典型情况下设置在/etc/env.d/02locale（系统全局设置）和 ~/.bashrc（特定用户设置）文件中。这些变量分别决定locale各方面的设置，下面的表格给出了具体说明。所有变量都会取一个前述ab_CD格式的locale名称作为值。locale把按照所涉及到的文化传统的各个方面分成12个大类，这12个大类分别是：123456789101112语言符号及其分类(LC_CTYPE) 数字(LC_NUMERIC) 比较和排序习惯(LC_COLLATE) 时间显示格式(LC_TIME) 货币单位(LC_MONETARY) 信息主要是提示信息,错误信息, 状态信息, 标题, 标签, 按钮和菜单等(LC_MESSAGES) 姓名书写方式(LC_NAME) 地址书写方式(LC_ADDRESS) 电话号码书写方式(LC_TELEPHONE) 度量衡表达方式(LC_MEASUREMENT) 默认纸张尺寸大小(LC_PAPER) 对locale自身包含信息的概述(LC_IDENTIFICATION)。 其中，与中文输入关系最密切的就是LC_CTYPE,LC_CTYPE规定了系统内有效的字符以及这些字符的分类，诸如什么是大写字母，小写字母，大小写转换，标点符号、可打印字符和其他的字符属性等方面。而locale定义zh_CN中最最重要的一项就是定义了汉字(Class “hanzi”)这一个大类，当然也是用Unicode描述的，这就让中文字符在Linux系统中成为合法的有效字符，而且不论它们是用什么字符集编码的。在en_US的locale定义中，并没有定义汉字，所以汉字不是有效字符。所以如果要输入中文必须使用支持中文的locale，也就是zh_XX，如zh_CN，zh_TW，zh_HK等等。另外非常重要的一点就是这些分类是彼此独立的，也就是说LC_CTYPE，LC_COLLATE和 LC_MESSAGES等等分类彼此之间是独立的，可以根据用户的需要设定成不同的值。这一点对很多用户是有利的，甚至是必须的。例如，我就需要一个能够输入中文的英文环境，所以我可以把LC_CTYPE设定成。 怎样设定locale呢？设定locale就是设定12大类的locale分类属性，即 12个LC_*。除了这12个变量可以设定以外，为了简便起见，还有两个变量：LC_ALL和LANG。它们之间有一个优先级的关系： LC_ALL &gt; LC_* &gt; LANG 可以这么说，LC_ALL是最上级设定或者强制设定，而LANG是默认设定值。 12341.如果你设定了LC_ALL＝zh_CN.UTF-8，那么不管LC_*和LANG设定成什么值，它们都会被强制服从LC_ALL的设定，成为 zh_CN.UTF-8。 2.假如你设定了LANG＝zh_CN.UTF-8，而其他的LC_*=en_US.UTF-8，并且没有设定LC_ALL的话，那么系统的locale设定以LC_*=en_US.UTF-8。 3.假如你设定了LANG＝zh_CN.UTF-8，而其他的LC_*，和LC_ALL均未设定的话，系统会将LC_*设定成默认值，也就是LANG的值 zh_CN.UTF-8 。 4.假如你设定了LANG＝zh_CN.UTF-8，而其他的LC_CTYPE=en_US.UTF-8，其他的LC_*，和LC_ALL均未设定的话，那么系统的locale设定将是：LC_CTYPE=en_US.UTF-8，其余的 LC_COLLATE，LC_MESSAGES等等均会采用默认值，也就是LANG的值，也就是LC_COLLATE＝LC_MESSAGES＝……＝ LC_PAPER＝LANG＝zh_CN.UTF-8。 所以，locale是这样设定的： 12341.如果你需要一个纯中文的系统的话，设定LC_ALL= zh_CN.XXXX，或者LANG= zh_CN.XXXX都可以，当然你可以两个都设定，但正如上面所讲，LC_ALL的值将复盖所有其他的locale设定，不要作无用功。 2.如果你只想要一个可以输入中文的环境，而保持菜单、标题，系统信息等等为英文界面，那么只需要设定LC_CTYPE＝zh_CN.XXXX，LANG= en_US.XXXX就可以了。这样LC_CTYPE＝zh_CN.XXXX，而LC_COLLATE＝LC_MESSAGES＝……＝ LC_PAPER＝LANG＝en_US.XXXX。 3.假如你高兴的话，可以把12个LC_*一一设定成你需要的值，打造一个古灵精怪的系统：LC_CTYPE＝zh_CN.GBK/GBK(使用中文编码内码GBK字符集)；LC_NUMERIC=en_GB.ISO-8859-1(使用大不列颠的数字系统)LC_MEASUREMEN=de_DE.ISO-8859-15@euro(德国的度量衡使用ISO-8859-15字符集)罗马的地址书写方式，美国的纸张设定……。估计没人这么干吧。 4.假如你什么也不做的话，也就是LC_ALL，LANG和LC_*均不指定特定值的话，系统将采用POSIX作为lcoale， 警告: LC_ALL设置之后不可被覆写，因此强烈反对使用。除非作测试请不要使用它，并且决不要把它设置在启动文件中。]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo/Funtoo USE标记介绍]]></title>
+      <url>%2F2013%2F12%2F04%2Fgentoo-use%2F</url>
+      <content type="text"><![CDATA[Gentoo/Funtoo USE标记USE的简单理解如下：一个软件不只包含软件本身，还包括其组件，如，文档，插件，GUI支持等。USE就是用来标记是否要安装软件的同时安装这些组件。 声明USE标记所有USE标记都声明在USE变量里面。 默认的USE设定，在make.defaults文件（你的profile的一部分）里声明。 全局USE标记不要通过修改make.defaults文件里的USE变量来满足你的需要：在升级Portage的时候，这个文件将会被破坏（被覆盖）。要改变这个默认设置，你需要在USE变量里添加或移去关键字。这是通过在/etc/make.conf里定义USE全局变量来实现的。全局USE标记适用范围是整个系统，保存在 /etc/portage/make.conf 文件中。比如，如果使用GNOME而不想使用KDE，就希望所有软件都要默认支持GNOME，KDE的支持就不要装，那么写上 USE＝“gnome -kde”。前面加 - 表示移除。当前可用的全局USE标记列表可以在网上或者本机的/usr/portage/profiles/use.desc文件里找到。 局部USE标记局部USE标记只被单个包用来做该包特有的决定，保存在 /etc/portage/package.use 中。比如，某个软件需要安装帮助文档，加上doc。当前可用的局部USE标记列表可以在网上或本机的/usr/portage/profiles/use.local.desc 文件里找到。 临时USE标记仅仅把USE变量声明成一个环境变量设定临时USE。比如，在安装 xxx 的时候不要装 jj 就声明：USE ＝ &quot;-jj&quot; emerge xxx USE标记优先级USE标记这么多地方可以定义，有的加有的减，听谁的，需要有优先级来判断。USE优先级顺序如下（由低到高）： make.defaults（这个文件不要去修改）里面的USE默认设定 &lt; 用户在/etc/make.conf里面的USE设定 &lt; 用户在/etc/portage/package.use里面的USE设定 &lt; 作为环境变量的USE设定 USE标记颜色emerge命令显示时，不同颜色USE标记的意义: 红色 代表这次emerge用到的USE标记黄色 表示从上次更新后该标记被增加、删除或者Masked蓝色 前面带-表示这次emerge屏蔽掉的USE标记绿色 的是你本次编译添加的新USE标记，或者去掉的USE标记。 包特有的USE标记查看特定包可用USE标记 1emerge -pv xxx 系统上应用新的USE标记如果你已经修改了你的USE标记，而且你想用新USE标记更新你的系统，可以使用emerge 的 --newuse。 1emerge --update --deep --newuse world （重新构建你的系统） 参考：http://en.gentoo-wiki.com/wiki/Portagehttp://www.gentoo.org/doc/en/handbook/handbook-x86.xml?part=2&amp;chap=1http://www.gentoo.org/dyn/use-index.xml]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo解决Udev升级的网卡重命名问题]]></title>
+      <url>%2F2013%2F11%2F18%2Fnetwork-udev-name%2F</url>
+      <content type="text"><![CDATA[问题描述：配置网络时，很多新手运行ifconfig命令查看网卡时，会发现我们熟悉的eth0网卡没有了，或是发现一些不规则命名的东东，不错，那就是你的网卡。 因为内核升级（忘记具体哪个版本了）从udev-197将自动分配更好的接口,网卡的命名改变了。 参考资料：http://www.freedesktop.org/wiki/Software/systemd/PredictableNetworkInterfaceNames 从开机信息中可以看到提示： 1dmesg |grep network [ 74.261872] systemd-udevd[14259]: renamed network interface wlan0 to wlp2s0[ 74.391865] systemd-udevd[14259]: renamed network interface eth0 to enp0s4 解决方法： 使用老的命名方式（eth×）： 使用原来的网卡名字eth0,重置udev的rules： 方法一： 在kernel命令行选项里使用net.ifnames=0方法二：新建空文件文件/etc/udev/rules.d/80-net-name-slot.rules或注释掉里面内容 123ln -s /dev/null /etc/udev/rules.d/80-net-name-slot.rules或touch /etc/udev/rules.d/80-net-name-slot.rules 使用新的网卡名字： 123456rm /etc/udev/rules.d/80-net-name-slot.rulesrm /etc/init.d/net.eth0 #删除不存在的引用rc-update delete net.eth0 default #删除不存在的开机启动cd /etc/init.dln -s net.lo net.enp0s3rc-update add net.enp0s3 default #使用新名字]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Gentoo网络配置]]></title>
+      <url>%2F2013%2F11%2F09%2Fnetwork-gentoo%2F</url>
+      <content type="text"><![CDATA[网卡识别配置要开始配置你的网卡，你首先需要告诉Gentoo RC系统你的网卡。可以用ifconfig命令查看自己网卡名字： 1ifconfig -a 网卡名字（如eth0）的识别是通过在/etc/init.d目录里建立一个指向net.lo的符号链接来实现。 12cd /etc/init.dln -s net.lo net.eth0 启动和停止网络脚本123/etc/init.d/net.eth0 start/etc/init.d/net.eth0 stoprc-update add net.eth0 default #设置开机启动eth0 网络配置命令方式（临时配置，重启后失效）：设置网络包括了三个步骤： 使用ifconfig配置ip地址： 1ifconfig eth0 192.168.1.10 broadcast 192.168.1.255 netmask 255.255.255.0 up 使用route来设定路由的网关： 1route add default gw 192.168.1.1 创建/etc/resolv.conf配置DNS： 1nano -w /etc/resolv.conf nameserver $202.99.166.4nameserver $202.99.160.68 配置文件方式：编辑网络配置文件/etc/conf.d/net和/etc/resolv.conf。 编辑/etc/conf.d/net配置主机IP地址、子网掩码和网关: 12345678nano -w /etc/conf.d/net``` &gt; 使用CIDR形式表示的静态IP：``` config_eth0=&quot;192.168.1.7/24&quot;routes_eth0=&quot;default via 192.168.1.1&quot; 使用netmask形式表示的静态IP 12config_eth0=&quot;192.168.1.7 broadcast 192.168.1.255 netmask 255.255.255.0&quot;routes_eth0=&quot;default via 192.168.1.1&quot; 注意: 如果你没有指定，DHCP是默认选项。 测试： 测试是否能ping的通网关： 1ping 192.168.1.1 如果能ping通，ip设置没错误。 测试DNS： 编辑/etc/resolv.conf配置DNS： 1nano /etc/resolv.conf 在其中加入以下两行内容： 12nameserver 202.99.160.68nameserver 202.99.166.4 测试DNS解析是否正常： 1ping www.baidu.com 如果能ping通，DNS设置无误。]]></content>
     </entry>
 
     
